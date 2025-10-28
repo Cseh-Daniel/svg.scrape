@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 @Service
 public class MyScraper {
 
-public String scrapeTag(String ...tag){
+public String scrapeTag(String url, String tag){
 
     WebDriver driver = new ChromeDriver();
 
-    driver.get("https://books.toscrape.com/");
+    driver.get(url);
 
-    String text = driver.findElements(By.tagName("small")).stream().map(WebElement::getText).collect(Collectors.joining(" "));
+    String text = driver.findElements(By.tagName(tag)).stream().map(WebElement::getText).collect(Collectors.joining(" "));
 
     driver.quit();
 
